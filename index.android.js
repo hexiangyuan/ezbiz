@@ -13,7 +13,7 @@ import Login from "./app/login/login";
 import PickSceen from "./app/login/picksrceen";
 
 const ezbizR = StackNavigator({
-    // Login: {screen: Login},
+    Login: {screen: Login},
     Pick: {screen: PickSceen},
 });
 

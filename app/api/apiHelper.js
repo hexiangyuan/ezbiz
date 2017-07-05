@@ -1,11 +1,5 @@
 export function fetchRequest(path: string, params = '') {
-    const url = product_url + "\/" + path
-    const header = {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
-    };
+    const url = product_url + "\/" + path;
 
     console.log("request url:", url, JSON.stringify(params));
 
@@ -14,15 +8,28 @@ export function fetchRequest(path: string, params = '') {
         if (params === '') {
             req = {
                 method: 'POST',
-                headers: header,
             }
         } else {
             req = {
                 method: 'POST',
-                headers: header,
                 body: JSON.stringify(params)
             }
         }
+
+        if (token === null || token.length === 0) {
+            req.headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        } else {
+            req.headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Cookie': '65_customer=' + token,
+                'Origin': 'http://www.65emall.net'
+            }
+        }
+
         fetch(url, req)
             .then((response) => response.json())
             .then((response) => {

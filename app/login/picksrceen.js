@@ -21,16 +21,17 @@ export default class PickScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{username: 'zhangsan'},
-                {username: 'lisi'},
-                {username: 'waner'}],
+            data: [{nickName: 'zhangsan'},
+                {nickName: 'lisi'},
+                {nickName: 'waner1'}],
+            text: '测试'
         }
     }
 
     render() {
         return (
             <View style={{flex: 1}}>
-                <Text>测试</Text>
+                <Text>{this.state.text}</Text>
                 <PickListView
                     data={this.state.data}
                 />
@@ -38,7 +39,37 @@ export default class PickScreen extends Component {
     }
 
     componentDidMount() {
-        fetchRequest()
+        let req = {
+            "filter": {
+                "deliveryDate": "2017-07-06",
+                "deliveryMan": "",
+                "deliveryTypeId": 4,
+                "isPicked": false,
+                "isSigned": false,
+                "periodId": 0,
+                "periodType": "",
+                "ptlGroupId": 0,
+                "regionId": 0,
+                "showPaymentInfo": false,
+                "showShipmentDetail": false,
+                "stationId": 0,
+                "stationTypeId": 0
+            }
+        };
+        fetchRequest('UserGetSubPkgs', req)
+            .then((response) => {
+                this.setState({
+                    data: response.subPkgs, text: 'response'
+                })
+            })
+            .catch((error) => {
+                this.setState({
+                    data: [{username: 'zhangsan'},
+                        {username: 'lisi'},
+                        {username: 'waner11111'}],
+                    text: 'error'
+                })
+            }).done();
     }
 }
 const styles = StyleSheet.create({

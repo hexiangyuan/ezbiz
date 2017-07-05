@@ -18,7 +18,6 @@ class InputUserName extends Component {
     }
 
     handleChange() {
-        console.log(this.userName);
         this.props.onChange(this.userName);
     }
 
@@ -46,7 +45,6 @@ class InputPassword extends Component {
 
     handleChange() {
         this.props.onChange(this.password);
-        console.log(this.password);
     }
 
     render() {
@@ -116,7 +114,6 @@ export default class Login extends Component {
     }
 
     onLoginPress() {
-        console.log("login");
         this.loginEzbiz();
     }
 
@@ -138,7 +135,7 @@ export default class Login extends Component {
             return
         }
         const user = {"username": name, "password": password, "catalogCode": "SG"};
-        this.setState({animating: true})
+        this.setState({animating: true});
         fetchRequest('Login', user)
             .then((response) => {
                 if (response.isSuccessful) {
@@ -153,7 +150,7 @@ export default class Login extends Component {
     }
 
     toPick() {
-        const {navigate} = this.props.navigation
+        const {navigate} = this.props.navigation;
         navigate('Pick')
     }
 }

@@ -19,7 +19,7 @@ export default class PickListView extends Component {
     render() {
         return (<FlatList
             data={this.props.data}
-            renderItem={({item}) => <Text>{item.username}</Text>}
+            renderItem={({item}) => <Text>{item.nickName}</Text>}
         />);
     }
 }
