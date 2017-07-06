@@ -21,9 +21,7 @@ export default class PickScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{nickName: 'zhangsan'},
-                {nickName: 'lisi'},
-                {nickName: 'waner1'}],
+            data: [],
             text: '测试'
         }
     }
@@ -59,22 +57,14 @@ export default class PickScreen extends Component {
         fetchRequest('UserGetSubPkgs', req)
             .then((response) => {
                 this.setState({
-                    data: response.subPkgs, text: 'response'
+                    data: response.subPkgs.slice(0,100), text: 'response'
                 })
             })
             .catch((error) => {
                 this.setState({
-                    data: [{username: 'zhangsan'},
-                        {username: 'lisi'},
-                        {username: 'waner11111'}],
+                    data: [],
                     text: 'error'
                 })
             }).done();
     }
 }
-const styles = StyleSheet.create({
-    pageStyle: {
-        alignItems: 'center',
-        padding: 20,
-    },
-})
